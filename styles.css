@@ -1,0 +1,459 @@
+/* ==========================================================================
+   naginnovation4u — one page site
+   Colours, named with their hex codes so nothing is guessed:
+     Warm Cream   #FDF6EC  page ground
+     Cream Deep   #F6EADA  picture-band ground (derived from Warm Cream)
+     Cream Card   #FFFDF8  card surface
+     Charcoal Ink #1C1C1E  body text, footer ground
+     Ink Soft     #4A4A4F  secondary text
+     Saffron Flame #E85D04 accent only: buttons, one headline word, thin rules
+     Saffron Deep  #C74E03 hover on the accent button
+     Peacock Blue #0B6E99  small labels, quiet lines, one full panel
+     Peacock Pale #E8F1F6  text on the Peacock panel
+     Footer Muted #CFC7BC / #8E887F  footer text
+   ========================================================================== */
+
+:root {
+  --cream: #FDF6EC;
+  --cream-deep: #F6EADA;
+  --cream-card: #FFFDF8;
+  --ink: #1C1C1E;
+  --ink-soft: #4A4A4F;
+  --saffron: #E85D04;
+  --saffron-deep: #C74E03;
+  --peacock: #0B6E99;
+  --peacock-pale: #E8F1F6;
+  --footer-muted: #CFC7BC;
+  --footer-dim: #8E887F;
+  --font-head: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 20px;
+  --section-pad: clamp(56px, 10vw, 120px);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #FDF6EC;               /* Warm Cream */
+  color: #1C1C1E;                    /* Charcoal Ink */
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; height: auto; }
+
+h1, h2, h3 { font-family: var(--font-head); color: #1C1C1E; }
+p { margin: 0; }
+
+a { color: #0B6E99; }               /* Peacock Blue */
+
+.wrap { width: min(1140px, 100% - 40px); margin-inline: auto; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #1C1C1E;
+  color: #FDF6EC;
+  padding: 12px 18px;
+  border-radius: 10px;
+  z-index: 100;
+}
+.skip-link:focus { left: 16px; top: 16px; }
+
+:focus-visible { outline: 3px solid #E85D04; outline-offset: 3px; }  /* Saffron Flame */
+
+/* ---------- small shared pieces ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0B6E99;                     /* Peacock Blue label */
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: #E85D04;                /* Saffron Flame thin rule */
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.8vw, 3.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 700;
+}
+
+.accent { color: #E85D04; }           /* Saffron Flame, one headline phrase */
+
+.lede {
+  max-width: 66ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+  color: #4A4A4F;                     /* Ink Soft */
+}
+
+.section { padding-block: var(--section-pad); }
+
+.section-head { display: flex; flex-direction: column; gap: 16px; }
+
+/* ---------- buttons (tap targets are 44px or more) ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.btn-primary { background: #E85D04; color: #FFFFFF; }        /* Saffron Flame */
+.btn-primary:hover { background: #C74E03; transform: translateY(-1px); }
+.btn-quiet { background: transparent; color: #1C1C1E; border-color: #0B6E99; }
+.btn-quiet:hover { background: rgba(11, 110, 153, 0.08); }
+.btn-outline { background: transparent; color: #0B6E99; border-color: #0B6E99; }
+.btn-outline:hover { background: #0B6E99; color: #FDF6EC; }
+.btn-small { min-height: 44px; padding: 10px 18px; font-size: 0.95rem; }
+.btn-lg { min-height: 56px; padding: 16px 30px; font-size: 1.05rem; }
+
+/* ---------- header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 246, 236, 0.93);   /* Warm Cream, near solid */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(11, 110, 153, 0.18);  /* quiet Peacock line */
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+  padding-block: 12px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #1C1C1E;
+}
+.brand-logo { width: 40px; height: 40px; border-radius: 10px; }
+.site-header .brand-logo { mix-blend-mode: multiply; }   /* logo.jpeg has a white ground */
+.brand-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: #1C1C1E;
+}
+
+/* ---------- section one: the first screen ---------- */
+
+.hero { display: grid; grid-template-columns: 1fr; }
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 56px) clamp(28px, 4vw, 48px);
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+
+.hero-media { margin: 0; }
+.hero-media img {
+  width: 100%;
+  height: 62svh;
+  min-height: 320px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 1000px) {
+  .hero {
+    grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+    min-height: calc(100svh - 72px);
+  }
+  .hero-copy { padding: clamp(40px, 5vw, 72px); }
+  .hero-media { min-height: 100%; }
+  .hero-media img { height: 100%; min-height: 100%; }
+}
+
+/* ---------- section two: the problem ---------- */
+
+.problem-grid { display: grid; grid-template-columns: 1fr; gap: clamp(24px, 4vw, 48px); }
+.problem-head { display: flex; flex-direction: column; gap: 16px; }
+
+.problem-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+.problem-list li {
+  position: relative;
+  padding-left: 32px;
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.9vw, 1.5rem);
+  line-height: 1.45;
+  color: #1C1C1E;
+}
+.problem-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background: #E85D04;                /* Saffron Flame thin rule */
+}
+
+@media (min-width: 880px) {
+  .problem-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); align-items: start; }
+}
+
+/* ---------- full width picture bands ---------- */
+
+.band {
+  background: #F6EADA;                                   /* Cream Deep */
+  border-block: 1px solid rgba(11, 110, 153, 0.14);      /* quiet Peacock line */
+  padding-block: clamp(40px, 5vw, 64px);
+}
+.band-figure { margin: 0; }
+.band img {
+  width: min(100%, 720px);
+  height: auto;
+  margin-inline: auto;
+  border-radius: var(--radius);
+}
+
+/* ---------- section three: service cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: clamp(28px, 4vw, 48px);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #FFFDF8;                                   /* Cream Card */
+  border: 1px solid rgba(11, 110, 153, 0.16);            /* quiet Peacock line */
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 36px);
+}
+.card-icon { display: inline-flex; width: 28px; height: 28px; }
+.card-icon svg { display: block; }
+.card-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);             /* loudest thing in the card */
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+.card p { color: #4A4A4F; }                              /* Ink Soft, 18px inherited */
+
+@media (min-width: 820px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Peacock Blue: one full panel, behind the offer name */
+.price-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 28px;
+  margin-top: clamp(28px, 4vw, 48px);
+  padding: clamp(24px, 3.4vw, 40px);
+  border-radius: var(--radius);
+  background: #0B6E99;                                   /* Peacock Blue */
+  color: #FDF6EC;
+}
+.price-name {
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+.price-note { margin: 0; max-width: 46ch; color: #E8F1F6; }
+
+/* ---------- section four: three steps ---------- */
+
+.steps-list {
+  list-style: none;
+  margin: clamp(28px, 4vw, 48px) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+.step { padding-top: 20px; border-top: 2px solid rgba(11, 110, 153, 0.25); }
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: #E85D04;                                   /* Saffron Flame */
+  color: #FFFFFF;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.step h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0B6E99;                                        /* Peacock Blue label */
+}
+.step p {
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  line-height: 1.45;
+}
+
+@media (min-width: 820px) {
+  .steps-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+}
+
+/* ---------- section five: who I am ---------- */
+
+.about-grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 56px); }
+.about-copy { display: flex; flex-direction: column; gap: 4px; }
+
+.about-name-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 14px 0 20px;
+}
+.avatar {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 auto;
+  border-radius: 50%;                                    /* small and round */
+  object-fit: cover;
+}
+.about-name { margin: 0; font-size: clamp(1.8rem, 3vw, 2.5rem); }
+
+.about-line {
+  max-width: 58ch;
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.slot {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border: 1px dashed rgba(11, 110, 153, 0.5);            /* quiet Peacock line */
+  border-radius: 12px;
+  background: rgba(11, 110, 153, 0.07);
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: #0B6E99;
+}
+
+.about-media { margin: 0; }
+.about-media img { width: 100%; height: auto; border-radius: var(--radius); }
+
+@media (min-width: 900px) {
+  .about-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 34%); align-items: start; }
+}
+.about.media-missing .about-grid { grid-template-columns: 1fr; }
+
+/* ---------- section six: contact ---------- */
+
+.contact-inner { display: flex; flex-direction: column; gap: 16px; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+.contact-details { color: #4A4A4F; }
+.contact-details a { color: #0B6E99; font-weight: 600; }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  background: #1C1C1E;                                   /* Charcoal Ink */
+  color: #FDF6EC;
+  padding-block: clamp(48px, 6vw, 72px);
+}
+.footer-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.brand-footer .brand-name { color: #FDF6EC; }
+.brand-footer .brand-logo { mix-blend-mode: normal; }
+.footer-line { max-width: 64ch; color: #CFC7BC; }
+.footer-meta { color: #8E887F; font-size: 0.95rem; }
+
+/* ---------- a picture that is missing closes up its space ---------- */
+
+img.is-broken { display: none !important; }
+figure.is-empty { display: none !important; }
+section.band.media-missing { display: none !important; }
+.hero.media-missing { grid-template-columns: 1fr !important; }
+.hero.media-missing .hero-copy { max-width: 66ch; }
+
+/* ---------- phone first: nothing scrolls sideways ---------- */
+
+@media (max-width: 560px) {
+  .wrap { width: min(1140px, 100% - 32px); }
+  .header-inner { gap: 10px; }
+  .brand { min-width: 0; gap: 9px; }
+  .brand-name { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero-copy { gap: 14px; padding-top: 28px; }
+  .hero-actions .btn-quiet { display: none; }
+  .hero-actions .btn { width: 100%; }
+  .contact-actions .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+  .btn-primary:hover { transform: none; }
+}

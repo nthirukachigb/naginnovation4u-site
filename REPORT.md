@@ -1,0 +1,107 @@
+# REPORT — naginnovation4u one page site
+
+Built in `C:\fwai-starter\naginnovation4u-site`. Open `index.html` in a browser.
+Files: `index.html`, `styles.css`, `script.js`, `images/`.
+
+## Status per part
+
+**Requirement 1 — ask before writing: DONE**
+  evidence: no file was written before the answers. First message listed the images folder and the
+  five details not held (name, WhatsApp number, email, booking link, why I started) and waited.
+
+**Requirement 2 — images folder listed first: DONE**
+  evidence: `Get-ChildItem images` printed 11 files. `shot-1.jpeg` is **0 bytes** and cannot be
+  read (`Exception calling "FromFile": "Out of memory."`), so it is not referenced anywhere.
+  Used: `logo.jpeg`, `logo-dark.jpeg`, `profile.jpeg`, `speaking.jpeg`, `working.jpeg`,
+  `shot-2.jpeg`, `shot-3.jpeg`, `shot-6.jpeg` as bands. `shot-4.jpeg` and `shot-5.jpeg` exist and
+  are valid but were not needed; `shot-6.jpeg` and `shot-3.jpeg` are real shop scenes and read
+  better as bands.
+
+**Requirement 3 — exact business name: DONE**
+  evidence: `grep -i naginnovation` on `index.html` returned 16 matches, every one spelled
+  `naginnovation4u` (title line 6, header line 26, footer line 227, WhatsApp text lines 208/213).
+
+**Requirement 4 — first screen: DONE**
+  evidence: headline, one line, booking button and the speaking photo. Desktop hero photo is
+  864x828 in a 1440x900 viewport; phone photo is 390x523 = `"ratio":"0.62"` of an 844 viewport.
+
+**Requirement 5 — the problem in the client's own words: DONE**
+  evidence: five lines, verbatim from the brief, in `#problem`.
+
+**Requirement 6 — three service cards, one price: DONE**
+  evidence: `#services` has three cards. Price appears once, exactly `Rs 25,000 a project`, on one
+  Peacock Blue `#0B6E99` panel. Card titles are the largest text in each card; icons are 28px
+  Peacock Blue inline SVG.
+
+**Requirement 7 — how it works, three steps: DONE**
+  evidence: `#how` holds the three given lines as steps one, two and three.
+
+**Requirement 8 — who I am: DONE**
+  evidence: `#about` shows `Nagaraju Thirukachi` with a 72px round `profile.jpeg` beside it, the
+  four ABOUT lines in the member's own voice, and `working.jpeg` at 34% column width.
+  `[WHY I STARTED]` is a visible slot: the member left that line empty and the brief forbids
+  inventing it.
+
+**Requirement 9 — contact, last: DONE**
+  evidence: `#contact` is the last section before the footer. Booking button reads
+  `Book a 20 minute call` and points at
+  `https://cal.com/nagaraju-thirukachi/20-min-ai-business-discovery-call-with-nag` (the member's
+  typed link, not the one in the original brief). WhatsApp is second, email third.
+
+**Requirement 10 — every contact link is real: DONE**
+  evidence: `node verify.js` printed the links, including
+  `https://wa.me/918978967171?text=Hi%20naginnovation4u...` and
+  `mailto:nagaraju.thirukachi@gmail.com?subject=Enquiry%20about%20a%20one%20page%20catalogue%20-%20naginnovation4u`.
+  No `BOOKING_LINK_GOES_HERE` placeholder was needed.
+
+**LOOK — pictures, colour, type, space, icons, shape, phone: DONE**
+  evidence: `node shoot.js` printed `PHONE_OVERFLOW []` (nothing scrolls sideways) and the
+  rendered section screenshots were reviewed. Colours used, with hex: Warm Cream `#FDF6EC`,
+  Charcoal Ink `#1C1C1E`, Saffron Flame `#E85D04` (buttons, one headline phrase, thin rules, step
+  numbers, 44px), Peacock Blue `#0B6E99` (labels, quiet lines, one full panel). Fonts:
+  Space Grotesk (headlines) and Inter (body) via one Google Fonts link tag.
+
+**Missing-picture rule: DONE**
+  evidence: `node debug.js` with `working.jpeg` renamed printed
+  `DIAG {"imgClass":"is-broken","figClass":"about-media is-empty","figDisplay":"none","gridColumns":"1140px","sectionClass":"section about media-missing"}`
+  — the picture is hidden, the heading and words stay, the layout drops to one column. Band
+  sections with no picture are removed entirely. Restored after the test.
+
+**Screenshot review: DONE**
+  evidence: rendered at 1440x900 and 390x844 with headless Chrome and looked at every section.
+
+## What broke and how I fixed it
+
+1. **Phone header collided.** The 390px screenshot showed `Book a 20 minute call` wrapping to two
+   lines and overlapping the `naginnovation4u` wordmark. Fixed: header button shortened to
+   `Book a call`, `white-space: nowrap` on all buttons, smaller wordmark with ellipsis on small
+   screens. Re-rendered and confirmed.
+2. **Phone hero photo was 58% of the first screen**, under the required 60%. Fixed: `58svh` ->
+   `62svh` and hid the secondary hero button on phones. Re-measured `"ratio":"0.62"`.
+3. **Missing-picture fallback did not collapse the About layout.** The class was added to the
+   `<section>` but the CSS rule targeted `.about-grid`. Fixed to `.about.media-missing .about-grid`.
+   Re-measured `gridColumns":"1140px"`, one column.
+
+## Claims ledger
+
+| Claim | Proof |
+|---|---|
+| Page renders, no sideways scroll on a phone | `node shoot.js` -> `PHONE {"scrollWidth":390,"clientWidth":390,...}` and `PHONE_OVERFLOW []` |
+| Hero photo is 62% of the phone first screen | `node shoot.js` -> `"ratio":"0.62"` |
+| Every referenced image file exists | `node verify.js` -> `MISSING_FILES []` |
+| Booking, WhatsApp and email links are the member's real details | `node verify.js` -> LINKS list |
+| A missing picture closes up its space | `node debug.js` -> DIAG line above |
+| Business name spelled `naginnovation4u` everywhere | `grep -i naginnovation` -> 16 matches, none misspelled |
+| GitHub repository created and pushed | see the push output below / in the chat |
+| The site is deployed and live on Vercel | **UNVERIFIED** — not done; the member imports the repo next |
+
+## What I would tell the next person
+
+- `shot-1.jpeg` is a 0-byte file. Replace it or delete it; nothing references it.
+- `[WHY I STARTED]` in the About section is the only unfilled slot. The member left that line blank.
+- The three picture bands (`shot-2`, `shot-6`, `shot-3`) are full-width sections with the square
+  shot centred at 720px so its built-in headline stays readable. To use `shot-4` or `shot-5`,
+  copy one into `images/` and add another `.band` section.
+- Every contact detail is a plain link. There is no form and no backend, as the brief requires.
+- To deploy: import this repository on Vercel as a static site. No build step, no environment
+  variables.
