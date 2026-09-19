@@ -23,3 +23,7 @@ Third fix -> missing-image rule targeted the inner grid but the collapse class l
 Created and pushed the repo -> `git init`, `git commit`, `gh repo create naginnovation4u-site --public --source=. --remote=origin --push` -> `https://github.com/nthirukachigb/naginnovation4u-site`, `* [new branch] HEAD -> master`.
 
 Confirmed the push is public -> `git ls-remote --heads origin` -> `f8ecbb152a8fa47cfd92a6d165f6c144a38afa4e refs/heads/master`; `webfetch` on the raw `index.html` returned the page.
+
+Vercel deploy failed -> build log from the member -> `Error: No Next.js version detected. Make sure your package.json has "next"...` (the project's Framework Preset was Next.js).
+
+Checked the documented fix -> `Invoke-RestMethod https://openapi.vercel.sh/vercel.json` -> `framework`: *"The framework that is being used for this project. When `null` is used no framework is selected"*, type `["null","string"]`. Added `vercel.json` with `"framework": null`.

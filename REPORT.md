@@ -81,6 +81,13 @@ Files: `index.html`, `styles.css`, `script.js`, `images/`.
 3. **Missing-picture fallback did not collapse the About layout.** The class was added to the
    `<section>` but the CSS rule targeted `.about-grid`. Fixed to `.about.media-missing .about-grid`.
    Re-measured `gridColumns":"1140px"`, one column.
+4. **Vercel tried to build the static site with `next build`.** The first deploy failed with
+   `Error: No Next.js version detected. Make sure your package.json has "next"...` — the Vercel
+   project's Framework Preset was Next.js, and this repo has no `package.json`. Fixed by adding
+   `vercel.json` with `"framework": null`. Vercel's schema says of `framework`: *"When `null` is
+   used no framework is selected"*, and Vercel's docs say *"To select 'Other' as the Framework
+   Preset, use `null`"*. Pushed in commit `f8ecbb1..` follow-up. **UNVERIFIED:** I have no Vercel
+   access, so I could not watch the rebuild; the member's next deploy log is the proof.
 
 ## Claims ledger
 
