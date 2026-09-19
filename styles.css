@@ -145,6 +145,8 @@ h2 {
 .btn-quiet:hover { background: rgba(11, 110, 153, 0.08); }
 .btn-outline { background: transparent; color: #0B6E99; border-color: #0B6E99; }
 .btn-outline:hover { background: #0B6E99; color: #FDF6EC; }
+.btn-cream { background: #FDF6EC; color: #0B6E99; }      /* for the Peacock panel */
+.btn-cream:hover { background: #FFFFFF; transform: translateY(-1px); }
 .btn-small { min-height: 44px; padding: 10px 18px; font-size: 0.95rem; }
 .btn-lg { min-height: 56px; padding: 16px 30px; font-size: 1.05rem; }
 
@@ -298,27 +300,28 @@ h2 {
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-/* Peacock Blue: one full panel, behind the offer name */
-.price-panel {
+/* Peacock Blue: one full panel holding the call to action. No pricing is shown. */
+.call-panel {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 10px 28px;
+  gap: 18px 28px;
   margin-top: clamp(28px, 4vw, 48px);
   padding: clamp(24px, 3.4vw, 40px);
   border-radius: var(--radius);
   background: #0B6E99;                                   /* Peacock Blue */
   color: #FDF6EC;
 }
-.price-name {
+.call-copy { display: flex; flex-direction: column; gap: 6px; }
+.call-title {
   margin: 0;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
   letter-spacing: -0.02em;
 }
-.price-note { margin: 0; max-width: 46ch; color: #E8F1F6; }
+.call-note { margin: 0; max-width: 52ch; color: #E8F1F6; }
 
 /* ---------- section four: three steps ---------- */
 
@@ -391,18 +394,6 @@ h2 {
   line-height: 1.6;
 }
 
-.slot {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 18px;
-  border: 1px dashed rgba(11, 110, 153, 0.5);            /* quiet Peacock line */
-  border-radius: 12px;
-  background: rgba(11, 110, 153, 0.07);
-  font-family: var(--font-head);
-  font-weight: 600;
-  color: #0B6E99;
-}
-
 .about-media { margin: 0; }
 .about-media img { width: 100%; height: auto; border-radius: var(--radius); }
 
@@ -450,6 +441,7 @@ section.band.media-missing { display: none !important; }
   .hero-actions .btn-quiet { display: none; }
   .hero-actions .btn { width: 100%; }
   .contact-actions .btn { width: 100%; }
+  .call-panel .btn { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

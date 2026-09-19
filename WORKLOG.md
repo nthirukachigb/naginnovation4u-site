@@ -27,3 +27,11 @@ Confirmed the push is public -> `git ls-remote --heads origin` -> `f8ecbb152a8fa
 Vercel deploy failed -> build log from the member -> `Error: No Next.js version detected. Make sure your package.json has "next"...` (the project's Framework Preset was Next.js).
 
 Checked the documented fix -> `Invoke-RestMethod https://openapi.vercel.sh/vercel.json` -> `framework`: *"The framework that is being used for this project. When `null` is used no framework is selected"*, type `["null","string"]`. Added `vercel.json` with `"framework": null`.
+
+Member changed two requirements (19 Sep): no pricing on the site, and remove the why-I-started slot.
+
+Removed the price panel and the slot -> edited `index.html` and `styles.css` -> the Peacock Blue panel now reads `Start with a discovery call.` with a `Book a 20 minute call` button; heading changed to `Three services, one call.`; `[WHY I STARTED]` and its `.slot` rule deleted.
+
+Checked no price is left -> `grep -i "Rs |25,000|slot|WHY I STARTED"` on `*.html/*.css/*.js` -> no service price, no slot; the only "prices" left describe the seller's own product prices in the catalogue.
+
+Re-rendered after the change -> `node shoot.js` -> `PHONE {"scrollWidth":390,"clientWidth":390,...}` / `PHONE_OVERFLOW []`; reviewed the services and about screenshots.

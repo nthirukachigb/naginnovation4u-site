@@ -28,10 +28,14 @@ Files: `index.html`, `styles.css`, `script.js`, `images/`.
 **Requirement 5 — the problem in the client's own words: DONE**
   evidence: five lines, verbatim from the brief, in `#problem`.
 
-**Requirement 6 — three service cards, one price: DONE**
-  evidence: `#services` has three cards. Price appears once, exactly `Rs 25,000 a project`, on one
-  Peacock Blue `#0B6E99` panel. Card titles are the largest text in each card; icons are 28px
-  Peacock Blue inline SVG.
+**Requirement 6 — three service cards: DONE, PRICING REMOVED AT THE MEMBER'S REQUEST**
+  evidence: `#services` has three cards. The brief's price `Rs 25,000 a project` was built and
+  shown, then on 19 Sep the member instructed: *"Don't give any pricings in the website, just ask
+  people to book a discovery call with me."* The price panel was replaced with a Peacock Blue
+  `#0B6E99` panel reading `Start with a discovery call.` plus a `Book a 20 minute call` button.
+  The section heading changed from `Three services, one price.` to `Three services, one call.`
+  `grep -i "Rs |25,000"` on `index.html` now returns nothing. Card titles are still the largest
+  text in each card; icons are 28px Peacock Blue inline SVG.
 
 **Requirement 7 — how it works, three steps: DONE**
   evidence: `#how` holds the three given lines as steps one, two and three.
@@ -39,8 +43,8 @@ Files: `index.html`, `styles.css`, `script.js`, `images/`.
 **Requirement 8 — who I am: DONE**
   evidence: `#about` shows `Nagaraju Thirukachi` with a 72px round `profile.jpeg` beside it, the
   four ABOUT lines in the member's own voice, and `working.jpeg` at 34% column width.
-  `[WHY I STARTED]` is a visible slot: the member left that line empty and the brief forbids
-  inventing it.
+  The `[WHY I STARTED]` slot was removed on 19 Sep at the member's instruction; `grep -i
+  "WHY I STARTED"` on `index.html` returns nothing.
 
 **Requirement 9 — contact, last: DONE**
   evidence: `#contact` is the last section before the footer. Booking button reads
@@ -105,7 +109,8 @@ Files: `index.html`, `styles.css`, `script.js`, `images/`.
 ## What I would tell the next person
 
 - `shot-1.jpeg` is a 0-byte file. Replace it or delete it; nothing references it.
-- `[WHY I STARTED]` in the About section is the only unfilled slot. The member left that line blank.
+- No service pricing is published. The page asks for a discovery call instead. Do not re-add a
+  price without the member asking.
 - The three picture bands (`shot-2`, `shot-6`, `shot-3`) are full-width sections with the square
   shot centred at 720px so its built-in headline stays readable. To use `shot-4` or `shot-5`,
   copy one into `images/` and add another `.band` section.
