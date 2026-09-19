@@ -19,3 +19,7 @@ First fix after looking at the phone screenshot -> header button wrapped and col
 Second fix -> mobile hero image was 58% of the first screen -> raised to `62svh`; measured `ratio":"0.62"`.
 
 Third fix -> missing-image rule targeted the inner grid but the collapse class lands on the `<section>` -> changed the rule to `.about.media-missing .about-grid`; re-measured `gridColumns":"1140px"` (one column).
+
+Created and pushed the repo -> `git init`, `git commit`, `gh repo create naginnovation4u-site --public --source=. --remote=origin --push` -> `https://github.com/nthirukachigb/naginnovation4u-site`, `* [new branch] HEAD -> master`.
+
+Confirmed the push is public -> `git ls-remote --heads origin` -> `f8ecbb152a8fa47cfd92a6d165f6c144a38afa4e refs/heads/master`; `webfetch` on the raw `index.html` returned the page.

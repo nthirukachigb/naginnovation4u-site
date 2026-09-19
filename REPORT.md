@@ -92,7 +92,7 @@ Files: `index.html`, `styles.css`, `script.js`, `images/`.
 | Booking, WhatsApp and email links are the member's real details | `node verify.js` -> LINKS list |
 | A missing picture closes up its space | `node debug.js` -> DIAG line above |
 | Business name spelled `naginnovation4u` everywhere | `grep -i naginnovation` -> 16 matches, none misspelled |
-| GitHub repository created and pushed | see the push output below / in the chat |
+| GitHub repository created and pushed | `git ls-remote --heads origin` -> `f8ecbb152a8fa47cfd92a6d165f6c144a38afa4e refs/heads/master`; `gh repo view` -> `{"name":"naginnovation4u-site","url":"https://github.com/nthirukachigb/naginnovation4u-site","visibility":"PUBLIC"}`; raw `index.html` fetched from `raw.githubusercontent.com/nthirukachigb/naginnovation4u-site/master/index.html` and it returned the real page |
 | The site is deployed and live on Vercel | **UNVERIFIED** — not done; the member imports the repo next |
 
 ## What I would tell the next person
