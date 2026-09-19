@@ -35,3 +35,11 @@ Removed the price panel and the slot -> edited `index.html` and `styles.css` -> 
 Checked no price is left -> `grep -i "Rs |25,000|slot|WHY I STARTED"` on `*.html/*.css/*.js` -> no service price, no slot; the only "prices" left describe the seller's own product prices in the catalogue.
 
 Re-rendered after the change -> `node shoot.js` -> `PHONE {"scrollWidth":390,"clientWidth":390,...}` / `PHONE_OVERFLOW []`; reviewed the services and about screenshots.
+
+Member supplied a social hook, caption and hashtags and said it is a carousel caption, with `[CLIENT QUOTE]` not required.
+
+Built the carousel -> `social/carousel.html` (10 slides, 1080x1080, Warm Cream #FDF6EC / Charcoal Ink #1C1C1E / Saffron Flame #E85D04 / Peacock Blue #0B6E99, Space Grotesk + Inter) and `social/caption.txt`.
+
+Exported the slides -> `node carousel.js` (puppeteer-core, Chrome) -> `SLIDES 10`, `wrote slide-1.png … slide-10.png`.
+
+Looked at the slides -> slide 1 had the page counter overlapping the "Swipe" footer, and slide 10 showed `cal.com/nagaraju-thirukachi`, a shortened link that is not a real URL. Moved the counter to the top right and put the full Cal.com URL on slide 10; re-exported and re-checked slides 1, 7 and 10.

@@ -93,6 +93,18 @@ Files: `index.html`, `styles.css`, `script.js`, `images/`.
    Preset, use `null`"*. Pushed in commit `f8ecbb1..` follow-up. **UNVERIFIED:** I have no Vercel
    access, so I could not watch the rebuild; the member's next deploy log is the proof.
 
+## Extra: social carousel (added 19 Sep, not part of the original brief)
+
+- `social/carousel.html` is the source. `social/carousel/slide-1.png` … `slide-10.png` are
+  1080 x 1080 exports. `social/caption.txt` holds the hook, the caption and the hashtags.
+- The slides carry only the member's own caption wording. `[CLIENT QUOTE]` was removed at the
+  member's instruction.
+- **Unproven claim kept in the caption:** *"I have done this for sellers with 10 to 20 SKUs."*
+  Nothing we hold shows past clients, so this is the member's claim to stand behind. The slide
+  version softens it to `Built for sellers with 10 to 20 SKUs`, which is a fit statement, not a
+  client count. Confirm or soften the caption line before posting.
+- No pricing appears on any slide, matching the website.
+
 ## Claims ledger
 
 | Claim | Proof |
